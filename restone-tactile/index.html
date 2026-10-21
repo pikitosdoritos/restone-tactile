@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReStone Tactile — тактильна плитка для безбар'єрних міст</title>
+<meta name="description" content="Бетонна тактильна плитка «поле уваги» та «напрямні смуги» 300×300×60 мм. Студентський проєкт Youthquake 2026: готуємо перші зразки до лабораторних випробувань.">
+<meta name="theme-color" content="#FFC400">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="ReStone Tactile — тактильна плитка для безбар'єрних міст">
+<meta property="og:description" content="Бетонна тактильна плитка 300×300×60 мм. Залиште запит на зразок або відгук.">
+<meta property="og:image" content="img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<script>
+  // Застосувати збережені налаштування доступності до першого малювання
+  (function () {
+    try {
+      var s = localStorage.getItem('rs-scale'); if (s && s !== '0') document.documentElement.setAttribute('data-scale', s);
+      if (localStorage.getItem('rs-contrast') === 'high') document.documentElement.setAttribute('data-contrast', 'high');
+    } catch (e) {}
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/tile.webp" type="image/webp">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти до змісту</a>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="logo" href="index.html" aria-label="ReStone — на головну">
+      <svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><rect x="1" y="1" width="26" height="26" rx="5" fill="#FFC400"/><g fill="#1E2226"><circle cx="8" cy="8" r="2.4"/><circle cx="14" cy="8" r="2.4"/><circle cx="20" cy="8" r="2.4"/><circle cx="8" cy="14" r="2.4"/><circle cx="14" cy="14" r="2.4"/><circle cx="20" cy="14" r="2.4"/><circle cx="8" cy="20" r="2.4"/><circle cx="14" cy="20" r="2.4"/><circle cx="20" cy="20" r="2.4"/></g></svg>
+      ReStone
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Меню
+    </button>
+    <div class="nav-panel" id="nav-panel">
+      <nav class="main-nav" aria-label="Основне меню">
+        <ul>
+          <li><a href="#product">Продукт</a></li>
+          <li><a href="#specs">Характеристики</a></li>
+          <li><a href="#path">Шлях до закупівлі</a></li>
+        </ul>
+      </nav>
+      <div class="tools">
+        <button class="tool-btn" type="button" data-action="scale" aria-pressed="false" aria-label="Збільшити шрифт">A+</button>
+        <button class="tool-btn" type="button" data-action="contrast" aria-pressed="false">Контраст</button>
+        <a class="btn btn-dark btn-sm" href="form.html">Запросити зразок</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <span class="pill">Студентський проєкт · Youthquake 2026</span>
+        <h1 id="hero-title">Тактильна плитка для безбар'єрних міст</h1>
+        <p class="hero-sub">Бетонні плитки «поле уваги» та «напрямні смуги» 300×300×60 мм. Готуємо перші зразки до лабораторних випробувань.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="form.html">Запросити зразок <span aria-hidden="true">→</span></a>
+          <a class="btn btn-outline" href="#specs">Характеристики</a>
+        </div>
+      </div>
+      <figure class="tile-figure">
+        <div class="tile-frame">
+          <img src="img/tile.webp" width="1000" height="855" fetchpriority="high"
+               alt="Візуалізація двошарової бетонної тактильної плитки: жовтий лицьовий шар із конусами «поле уваги» і сірий бетонний основний шар">
+        </div>
+        <figcaption>Візуалізація · фізичний зразок у розробці</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="note" role="note">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="currentColor"/><rect x="12.5" y="12" width="3" height="9" fill="var(--bg)"/><rect x="12.5" y="7" width="3" height="3" fill="var(--bg)"/></svg>
+      <p>Плитка ще в розробці. Характеристики — заплановані, ми підтвердимо їх лабораторними випробуваннями.</p>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="how-title">
+    <div class="wrap">
+      <h2 class="section-title" id="how-title">Як це працює</h2>
+      <p class="section-lead">Три кроки, близько 2 хвилин.</p>
+      <ol class="steps">
+        <li><span class="step-num" aria-hidden="true">1</span><div><strong>Розкажіть про об'єкт</strong><span>Тротуар, перехід, зупинка чи вхід до будівлі.</span></div></li>
+        <li><span class="step-num" aria-hidden="true">2</span><div><strong>Вкажіть, які документи потрібні</strong><span>Паспорт якості, протокол випробувань, зразок.</span></div></li>
+        <li><span class="step-num" aria-hidden="true">3</span><div><strong>Отримайте зразок</strong><span>Зв'яжемося, коли він буде готовий і перевірений.</span></div></li>
+      </ol>
+      <p style="margin-top:28px"><a class="btn btn-primary" href="form.html">Заповнити форму <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="section section-white" id="product" aria-labelledby="product-title">
+    <div class="wrap">
+      <h2 class="section-title" id="product-title">Для чого потрібна тактильна плитка</h2>
+      <p class="section-lead">Рельєф під ногами підказує дорогу людям, які погано бачать або не бачать зовсім.</p>
+      <div class="cards">
+        <article class="card">
+          <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><rect x="2" y="2" width="40" height="40" rx="8" fill="#FFC400"/><g fill="#1E2226"><circle cx="13" cy="13" r="3.5"/><circle cx="22" cy="13" r="3.5"/><circle cx="31" cy="13" r="3.5"/><circle cx="13" cy="22" r="3.5"/><circle cx="22" cy="22" r="3.5"/><circle cx="31" cy="22" r="3.5"/><circle cx="13" cy="31" r="3.5"/><circle cx="22" cy="31" r="3.5"/><circle cx="31" cy="31" r="3.5"/></g></svg>
+          <h3>Поле уваги</h3>
+          <p>Конуси попереджають про небезпеку попереду: пішохідний перехід, сходи чи край платформи.</p>
+        </article>
+        <article class="card">
+          <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><rect x="2" y="2" width="40" height="40" rx="8" fill="#FFC400"/><g fill="#1E2226"><rect x="10" y="9" width="5" height="26" rx="2.5"/><rect x="19.5" y="9" width="5" height="26" rx="2.5"/><rect x="29" y="9" width="5" height="26" rx="2.5"/></g></svg>
+          <h3>Напрямні смуги</h3>
+          <p>Смуги ведуть уздовж маршруту — від зупинки до входу, через площу чи вокзал.</p>
+        </article>
+        <article class="card card-dark">
+          <h3>Ваш досвід важливий</h3>
+          <p>Користуєтеся тактильними покажчиками? Розкажіть, що зручно, а що ні — ми врахуємо це у зразку.</p>
+          <a href="form.html">Залишити відгук <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="specs-title">
+    <div class="wrap specs-grid">
+      <div id="specs">
+        <h2 class="section-title" id="specs-title">Характеристики</h2>
+        <p class="section-lead">Цільові показники. Статус оновлюємо після кожного етапу випробувань.</p>
+        <div class="spec">
+          <table>
+            <caption>Паспорт продукту · версія 0.1</caption>
+            <thead>
+              <tr><th scope="col">Параметр</th><th scope="col">Значення</th><th scope="col">Статус</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Формат</th><td class="val">300×300×60 мм</td><td class="empty">—</td></tr>
+              <tr><th scope="row">Будова</th><td class="val">лицьовий шар 10 мм + основний шар 50 мм</td><td class="empty">—</td></tr>
+              <tr><th scope="row">Міцність · морозостійкість · водонепроникність</th><td class="val">B35 / F200 / W6</td><td><span class="badge">Заплановано</span></td></tr>
+              <tr><th scope="row">Рельєф і геометрія</th><td class="val">ДСТУ ISO 23599</td><td><span class="badge">Заплановано</span></td></tr>
+              <tr><th scope="row">Колір лицьового шару</th><td class="val">сигнальний жовтий</td><td class="empty">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="path">
+        <h2 class="section-title">Шлях до закупівлі</h2>
+        <p class="section-lead">Що має статися, перш ніж плитку можна буде замовити.</p>
+        <ol class="path">
+          <li class="step-row is-now"><b aria-hidden="true">1</b><span>Фізичний зразок<span class="visually-hidden"> — поточний етап</span> · зараз</span></li>
+          <li class="step-row"><b aria-hidden="true">2</b><span>Випробування в акредитованій лабораторії</span></li>
+          <li class="step-row"><b aria-hidden="true">3</b><span>Паспорт якості та протокол випробувань</span></li>
+          <li class="step-row"><b aria-hidden="true">4</b><span>Пілотна партія для замовника</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-white" aria-labelledby="cta-title">
+    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center">
+      <h2 class="section-title" id="cta-title" style="margin:0">Потрібен зразок для погодження?</h2>
+      <a class="btn btn-primary" href="form.html">Залишити запит <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <span class="footer-brand">ReStone Tactile</span>
+    <p>Студентський проєкт команди Sludge2Product · Youthquake 2026</p>
+    <p>Легкий сайт: менше даних — менше енергії. Без трекерів.</p>
+    <a href="form.html">Запит на зразок</a>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
