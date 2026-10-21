@@ -1,5 +1,10 @@
 /* ReStone Tactile — стилі. Mobile-first, без фреймворків. */
 
+/* Атрибут hidden завжди ховає елемент, навіть якщо в нього є display */
+[hidden] {
+  display: none !important;
+}
+
 :root {
   --bg: #F6F6F4;
   --surface: #FFFFFF;
