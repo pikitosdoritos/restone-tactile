@@ -1,164 +1,216 @@
 <!doctype html>
 <html lang="uk">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Запит на зразок або відгук — ReStone Tactile</title>
-<meta name="description" content="Залиште запит на зразок тактильної плитки ReStone або розкажіть, що зручно на тактильних покажчиках у вашому місті.">
-<meta name="theme-color" content="#FFC400">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="uk_UA">
-<meta property="og:title" content="Запит на зразок — ReStone Tactile">
-<meta property="og:description" content="2 хвилини: розкажіть про об'єкт і потрібні документи.">
-<meta property="og:image" content="img/og.jpg">
-<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<script>
-  (function () {
-    try {
-      var s = localStorage.getItem('rs-scale'); if (s && s !== '0') document.documentElement.setAttribute('data-scale', s);
-      if (localStorage.getItem('rs-contrast') === 'high') document.documentElement.setAttribute('data-contrast', 'high');
-    } catch (e) {}
-  })();
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Запит на зразок або відгук — ReStone Tactile</title>
+  <meta name="description"
+    content="Залиште запит на зразок тактильної плитки ReStone або розкажіть, що зручно на тактильних покажчиках у вашому місті.">
+  <meta name="theme-color" content="#FFC400">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="uk_UA">
+  <meta property="og:title" content="Запит на зразок — ReStone Tactile">
+  <meta property="og:description" content="2 хвилини: розкажіть про об'єкт і потрібні документи.">
+  <meta property="og:image" content="img/og.jpg">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      try {
+        var s = localStorage.getItem('rs-scale'); if (s && s !== '0') document.documentElement.setAttribute('data-scale', s);
+        if (localStorage.getItem('rs-contrast') === 'high') document.documentElement.setAttribute('data-contrast', 'high');
+      } catch (e) { }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-<a class="skip-link" href="#main">Перейти до форми</a>
+  <a class="skip-link" href="#main">Перейти до форми</a>
 
-<header class="site-header">
-  <div class="wrap form-header-row">
-    <a class="page-back" href="index.html"><span aria-hidden="true">←&nbsp;</span>ReStone<span class="visually-hidden"> — на головну</span></a>
-    <span class="time-note">Близько 2 хвилин</span>
-    <div class="tools">
-      <button class="tool-btn" type="button" data-action="scale" aria-pressed="false" aria-label="Збільшити шрифт">A+</button>
-      <button class="tool-btn" type="button" data-action="contrast" aria-pressed="false">Контраст</button>
+  <header class="site-header">
+    <div class="wrap form-header-row">
+      <a class="page-back" href="index.html"><span aria-hidden="true">←&nbsp;</span>ReStone<span
+          class="visually-hidden"> — на головну</span></a>
+      <span class="time-note">Близько 2 хвилин</span>
+      <div class="tools">
+        <button class="tool-btn" type="button" data-action="scale" aria-pressed="false"
+          aria-label="Збільшити шрифт">A+</button>
+        <button class="tool-btn" type="button" data-action="contrast" aria-pressed="false">Контраст</button>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<main id="main" class="form-page" tabindex="-1">
+  <main id="main" class="form-page" tabindex="-1">
 
-  <div id="form-view">
-    <div class="form-head">
-      <h1>Запит на зразок або відгук</h1>
-      <p>Відповіді допоможуть нам зробити плитку під реальні потреби. Обов'язкове лише перше поле, позначене <span class="req" aria-hidden="true">*</span>.</p>
+    <div id="form-view">
+      <div class="form-head">
+        <h1>Запит на зразок або відгук</h1>
+        <p>Відповіді допоможуть нам зробити плитку під реальні потреби. Обов'язкове лише перше поле, позначене <span
+            class="req" aria-hidden="true">*</span>.</p>
+      </div>
+
+      <div class="error-summary" id="error-summary" role="alert" tabindex="-1" hidden>
+        <h2>Перевірте, будь ласка:</h2>
+        <ul id="error-list"></ul>
+      </div>
+
+      <form class="form" id="request-form" novalidate>
+
+        <div class="field">
+          <label for="org">Організація або ваше ім'я <span class="req" aria-hidden="true">*</span></label>
+          <span class="help" id="org-help">Наприклад: КП «Благоустрій» або Олена Коваль</span>
+          <input class="input" id="org" name="org" type="text" autocomplete="organization" required aria-required="true"
+            aria-describedby="org-help org-error">
+          <span class="error-text" id="org-error"></span>
+        </div>
+
+        <fieldset class="field">
+          <legend>Хто ви?</legend>
+          <div class="choices">
+            <label class="choice pill-choice"><input type="radio" name="role"
+                value="Закупівельник"><span>Закупівельник</span></label>
+            <label class="choice pill-choice"><input type="radio" name="role"
+                value="Інженер"><span>Інженер</span></label>
+            <label class="choice pill-choice"><input type="radio" name="role"
+                value="Благоустрій"><span>Благоустрій</span></label>
+            <label class="choice pill-choice"><input type="radio" name="role"
+                value="Користувач покажчиків"><span>Користувач покажчиків</span></label>
+            <label class="choice pill-choice"><input type="radio" name="role" value="Інше"><span>Інше</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Для якого об'єкта потрібна плитка?</legend>
+          <span class="help">Можна обрати кілька.</span>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="objects" value="Тротуар"><span>Тротуар</span></label>
+            <label class="choice"><input type="checkbox" name="objects" value="Пішохідний перехід"><span>Пішохідний
+                перехід</span></label>
+            <label class="choice"><input type="checkbox" name="objects" value="Зупинка транспорту"><span>Зупинка
+                транспорту</span></label>
+            <label class="choice"><input type="checkbox" name="objects" value="Вхід до будівлі"><span>Вхід до
+                будівлі</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Які документи потрібні, щоб розглянути плитку для вашого об'єкта?</legend>
+          <span class="help">Можна обрати кілька.</span>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="docs" value="Паспорт якості"><span>Паспорт
+                якості</span></label>
+            <label class="choice"><input type="checkbox" name="docs" value="Протокол випробувань"><span>Протокол
+                випробувань</span></label>
+            <label class="choice"><input type="checkbox" name="docs" value="Фізичний зразок"><span>Фізичний
+                зразок</span></label>
+            <label class="choice"><input type="checkbox" name="docs" value="Сертифікат відповідності"><span>Сертифікат
+                відповідності</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Які характеристики мають бути підтверджені?</legend>
+          <span class="help">Те, що зазвичай є у технічному завданні вашої закупівлі. Можна обрати кілька.</span>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="docs" value="Клас міцності B30–B35"><span>Клас міцності
+                B30–B35</span></label>
+            <label class="choice"><input type="checkbox" name="docs" value="Морозостійкість F200"><span>Морозостійкість
+                F200</span></label>
+            <label class="choice"><input type="checkbox" name="docs"
+                value="Водопоглинання і стираність"><span>Водопоглинання і стираність</span></label>
+            <label class="choice"><input type="checkbox" name="docs" value="Рельєф за ДСТУ ISO 23599"><span>Рельєф за
+                ДСТУ ISO 23599</span></label>
+            <label class="choice"><input type="checkbox" name="docs" value="Колір і контраст"><span>Колір і
+                контраст</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field hint-box">
+          <label for="access">Зручність для людей із порушеннями зору</label>
+          <span class="help" id="access-help">Що заважає або допомагає на тактильних покажчиках у вашому місті?</span>
+          <textarea class="textarea" id="access" name="access" rows="4" maxlength="2000"
+            aria-describedby="access-help"></textarea>
+        </div>
+
+        <fieldset class="field">
+          <legend>Наскільки ймовірно ви розглянете таку плитку?</legend>
+          <div class="scale">
+            <span class="scale-label" aria-hidden="true">Малоймовірно</span>
+            <label class="choice"><input type="radio" name="score" value="1"><span><span class="visually-hidden">Оцінка
+                </span>1</span></label>
+            <label class="choice"><input type="radio" name="score" value="2"><span><span class="visually-hidden">Оцінка
+                </span>2</span></label>
+            <label class="choice"><input type="radio" name="score" value="3"><span><span class="visually-hidden">Оцінка
+                </span>3</span></label>
+            <label class="choice"><input type="radio" name="score" value="4"><span><span class="visually-hidden">Оцінка
+                </span>4</span></label>
+            <label class="choice"><input type="radio" name="score" value="5"><span><span class="visually-hidden">Оцінка
+                </span>5</span></label>
+            <span class="scale-label" aria-hidden="true">Дуже ймовірно</span>
+          </div>
+          <span class="help">1 — малоймовірно, 5 — дуже ймовірно.</span>
+        </fieldset>
+
+        <div class="field">
+          <label for="contact">Як з вами зв'язатися, коли буде зразок?</label>
+          <span class="help" id="contact-help">Телефон або e-mail. Якщо залишите поле порожнім, ми не зможемо
+            відповісти.</span>
+          <input class="input" id="contact" name="contact" type="text" autocomplete="email" inputmode="email"
+            aria-describedby="contact-help contact-error">
+          <span class="error-text" id="contact-error"></span>
+        </div>
+
+        <div class="field">
+          <label class="consent" for="consent">
+            <input type="checkbox" id="consent" name="consent" value="так" aria-describedby="consent-error">
+            <span>Погоджуюся, що мої контакти використають лише для зв'язку щодо зразка. Ми не передаємо їх третім
+              особам.</span>
+          </label>
+          <span class="error-text" id="consent-error"></span>
+        </div>
+
+        <!-- Пастка для спам-ботів: людина це поле не бачить -->
+        <div class="hp" aria-hidden="true">
+          <label for="website">Не заповнюйте це поле</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="submit-row">
+          <button class="btn btn-primary" type="submit" id="submit-btn"
+            style="min-height:60px;padding:0 36px">Надіслати</button>
+          <span class="form-status" id="form-status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
     </div>
 
-    <div class="error-summary" id="error-summary" role="alert" tabindex="-1" hidden>
-      <h2>Перевірте, будь ласка:</h2>
-      <ul id="error-list"></ul>
+    <div class="thanks" id="thanks-view" hidden>
+      <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="#FFC400" />
+        <path d="M20 33l8 8 16-17" fill="none" stroke="#1E2226" stroke-width="4" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+      <h1 tabindex="-1" id="thanks-title">Дякуємо!</h1>
+      <p>Ми отримали вашу відповідь і зв'яжемося з вами, щойно буде фізичний зразок і результати випробувань.</p>
+      <a class="btn btn-outline" href="index.html">На головну</a>
     </div>
 
-    <form class="form" id="request-form" novalidate>
+  </main>
 
-      <div class="field">
-        <label for="org">Організація або ваше ім'я <span class="req" aria-hidden="true">*</span></label>
-        <span class="help" id="org-help">Наприклад: КП «Благоустрій» або Олена Коваль</span>
-        <input class="input" id="org" name="org" type="text" autocomplete="organization" required aria-required="true" aria-describedby="org-help org-error">
-        <span class="error-text" id="org-error"></span>
-      </div>
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span class="footer-brand">ReStone Tactile</span>
+      <p>Студентський проєкт команди Sludge2Product · Youthquake 2026</p>
+    </div>
+  </footer>
 
-      <fieldset class="field">
-        <legend>Хто ви?</legend>
-        <div class="choices">
-          <label class="choice pill-choice"><input type="radio" name="role" value="Закупівельник"><span>Закупівельник</span></label>
-          <label class="choice pill-choice"><input type="radio" name="role" value="Інженер"><span>Інженер</span></label>
-          <label class="choice pill-choice"><input type="radio" name="role" value="Благоустрій"><span>Благоустрій</span></label>
-          <label class="choice pill-choice"><input type="radio" name="role" value="Користувач покажчиків"><span>Користувач покажчиків</span></label>
-          <label class="choice pill-choice"><input type="radio" name="role" value="Інше"><span>Інше</span></label>
-        </div>
-      </fieldset>
-
-      <fieldset class="field">
-        <legend>Для якого об'єкта потрібна плитка?</legend>
-        <span class="help">Можна обрати кілька.</span>
-        <div class="choices">
-          <label class="choice"><input type="checkbox" name="objects" value="Тротуар"><span>Тротуар</span></label>
-          <label class="choice"><input type="checkbox" name="objects" value="Пішохідний перехід"><span>Пішохідний перехід</span></label>
-          <label class="choice"><input type="checkbox" name="objects" value="Зупинка транспорту"><span>Зупинка транспорту</span></label>
-          <label class="choice"><input type="checkbox" name="objects" value="Вхід до будівлі"><span>Вхід до будівлі</span></label>
-        </div>
-      </fieldset>
-
-      <fieldset class="field">
-        <legend>Що потрібно від виробника, щоб розглянути закупівлю?</legend>
-        <span class="help">Можна обрати кілька.</span>
-        <div class="choices">
-          <label class="choice"><input type="checkbox" name="docs" value="Паспорт якості"><span>Паспорт якості</span></label>
-          <label class="choice"><input type="checkbox" name="docs" value="Протокол випробувань"><span>Протокол випробувань</span></label>
-          <label class="choice"><input type="checkbox" name="docs" value="Фізичний зразок"><span>Фізичний зразок</span></label>
-          <label class="choice"><input type="checkbox" name="docs" value="Сертифікат відповідності"><span>Сертифікат відповідності</span></label>
-        </div>
-      </fieldset>
-
-      <div class="field hint-box">
-        <label for="access">Зручність для людей із порушеннями зору</label>
-        <span class="help" id="access-help">Що заважає або допомагає на тактильних покажчиках у вашому місті?</span>
-        <textarea class="textarea" id="access" name="access" rows="4" maxlength="2000" aria-describedby="access-help"></textarea>
-      </div>
-
-      <fieldset class="field">
-        <legend>Наскільки ймовірно ви розглянете таку плитку?</legend>
-        <div class="scale">
-          <span class="scale-label" aria-hidden="true">Малоймовірно</span>
-          <label class="choice"><input type="radio" name="score" value="1"><span><span class="visually-hidden">Оцінка </span>1</span></label>
-          <label class="choice"><input type="radio" name="score" value="2"><span><span class="visually-hidden">Оцінка </span>2</span></label>
-          <label class="choice"><input type="radio" name="score" value="3"><span><span class="visually-hidden">Оцінка </span>3</span></label>
-          <label class="choice"><input type="radio" name="score" value="4"><span><span class="visually-hidden">Оцінка </span>4</span></label>
-          <label class="choice"><input type="radio" name="score" value="5"><span><span class="visually-hidden">Оцінка </span>5</span></label>
-          <span class="scale-label" aria-hidden="true">Дуже ймовірно</span>
-        </div>
-        <span class="help">1 — малоймовірно, 5 — дуже ймовірно.</span>
-      </fieldset>
-
-      <div class="field">
-        <label for="contact">Як з вами зв'язатися, коли буде зразок?</label>
-        <span class="help" id="contact-help">Телефон або e-mail. Якщо залишите поле порожнім, ми не зможемо відповісти.</span>
-        <input class="input" id="contact" name="contact" type="text" autocomplete="email" inputmode="email" aria-describedby="contact-help contact-error">
-        <span class="error-text" id="contact-error"></span>
-      </div>
-
-      <div class="field">
-        <label class="consent" for="consent">
-          <input type="checkbox" id="consent" name="consent" value="так" aria-describedby="consent-error">
-          <span>Погоджуюся, що мої контакти використають лише для зв'язку щодо зразка. Ми не передаємо їх третім особам.</span>
-        </label>
-        <span class="error-text" id="consent-error"></span>
-      </div>
-
-      <!-- Пастка для спам-ботів: людина це поле не бачить -->
-      <div class="hp" aria-hidden="true">
-        <label for="website">Не заповнюйте це поле</label>
-        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-      </div>
-
-      <div class="submit-row">
-        <button class="btn btn-primary" type="submit" id="submit-btn" style="min-height:60px;padding:0 36px">Надіслати</button>
-        <span class="form-status" id="form-status" role="status" aria-live="polite"></span>
-      </div>
-    </form>
-  </div>
-
-  <div class="thanks" id="thanks-view" hidden>
-    <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#FFC400"/><path d="M20 33l8 8 16-17" fill="none" stroke="#1E2226" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <h1 tabindex="-1" id="thanks-title">Дякуємо!</h1>
-    <p>Ми отримали вашу відповідь і зв'яжемося з вами, щойно буде фізичний зразок і результати випробувань.</p>
-    <a class="btn btn-outline" href="index.html">На головну</a>
-  </div>
-
-</main>
-
-<footer class="site-footer">
-  <div class="wrap footer-row">
-    <span class="footer-brand">ReStone Tactile</span>
-    <p>Студентський проєкт команди Sludge2Product · Youthquake 2026</p>
-  </div>
-</footer>
-
-<script src="config.js"></script>
-<script src="app.js" defer></script>
+  <script src="config.js"></script>
+  <script src="app.js" defer></script>
 </body>
+
 </html>
