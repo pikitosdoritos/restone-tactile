@@ -51,8 +51,10 @@
     <div id="form-view">
       <div class="form-head">
         <h1>Запит на зразок або відгук</h1>
-        <p>Відповіді допоможуть нам зробити плитку під реальні потреби. Обов'язкове лише перше поле, позначене <span
-            class="req" aria-hidden="true">*</span>.</p>
+        <p>Відповіді допоможуть нам зробити плитку під реальні потреби. Усі поля необов'язкові — заповніть те, що
+          вважаєте за потрібне.</p>
+        <p><strong>Зразок поки не потрібен?</strong> Просто напишіть, <a href="#missing">якої інформації бракує або що
+            викликає сумніви</a>, — це теж дуже допоможе.</p>
       </div>
 
       <div class="error-summary" id="error-summary" role="alert" tabindex="-1" hidden>
@@ -63,9 +65,9 @@
       <form class="form" id="request-form" novalidate>
 
         <div class="field">
-          <label for="org">Організація або ваше ім'я <span class="req" aria-hidden="true">*</span></label>
+          <label for="org">Організація або ваше ім'я</label>
           <span class="help" id="org-help">Наприклад: КП «Благоустрій» або Олена Коваль</span>
-          <input class="input" id="org" name="org" type="text" autocomplete="organization" required aria-required="true"
+          <input class="input" id="org" name="org" type="text" autocomplete="organization"
             aria-describedby="org-help org-error">
           <span class="error-text" id="org-error"></span>
         </div>
@@ -130,6 +132,15 @@
                 контраст</span></label>
           </div>
         </fieldset>
+
+
+        <div class="field">
+          <label for="missing">Якої інформації бракує або що викликає сумніви?</label>
+          <span class="help" id="missing-help">Можна написати, навіть якщо зразок вам поки не потрібен.</span>
+          <textarea class="textarea" id="missing" name="missing" rows="3" maxlength="2000"
+            aria-describedby="missing-help missing-error"></textarea>
+          <span class="error-text" id="missing-error"></span>
+        </div>
 
         <div class="field hint-box">
           <label for="access">Зручність для людей із порушеннями зору</label>

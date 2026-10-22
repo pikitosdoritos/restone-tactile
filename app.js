@@ -102,8 +102,11 @@
     setError('contact', '');
     setError('consent', '');
 
-    if (!org) {
-      errors.push({ id: 'org', text: 'Вкажіть назву організації або ваше ім\'я.' });
+    setError('missing', '');
+    var d = collect();
+    var empty = !d.org && !d.missing && !d.access && !d.docs && !d.objects && !d.score && !d.contact;
+    if (empty) {
+      errors.push({ id: 'missing', text: 'Заповніть хоча б одне поле — наприклад, напишіть, якої інформації бракує.' });
     }
     if (contact && !looksLikeContact(contact)) {
       errors.push({ id: 'contact', text: 'Вкажіть e-mail (name@mail.com) або телефон із кодом (+380…).' });
@@ -144,6 +147,7 @@
       role: fd.get('role') || '',
       objects: multi('objects'),
       docs: multi('docs'),
+      missing: (fd.get('missing') || '').trim(),
       access: (fd.get('access') || '').trim(),
       score: fd.get('score') || '',
       contact: (fd.get('contact') || '').trim(),
