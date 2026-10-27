@@ -653,6 +653,8 @@ html[data-contrast="high"] .step-num {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   overflow-x: auto;
+  container-type: inline-size;
+  container-name: spec;
 }
 
 .spec table {
@@ -1085,8 +1087,8 @@ legend {
   min-width: 0;
 }
 
-/* Таблиця характеристик на вузьких екранах — картками */
-@media (max-width: 599px) {
+/* Таблиця характеристик, коли їй тісно (вузький екран або збільшений шрифт A+) — картками */
+@container spec (max-width: 34em) {
   .spec thead {
     position: absolute;
     width: 1px;
@@ -1138,7 +1140,7 @@ legend {
   color: var(--on-dark);
 }
 
-@media (max-width: 599px) {
+@container spec (max-width: 34em) {
   .spec caption {
     display: block;
     width: auto;
@@ -1156,4 +1158,10 @@ legend {
   height: 100%;
   object-fit: cover;
   animation: none;
+}
+
+h1,
+h2 {
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
