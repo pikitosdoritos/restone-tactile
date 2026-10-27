@@ -68,6 +68,56 @@
     });
   }
 
+  /* ---------- A/B-тест і анонімна статистика ----------
+     Варіант (?v=a / ?v=b) і код респондента (?r=R01) беруться з персонального посилання
+     і запам'ятовуються, щоб на сторінці форми вони теж були відомі.
+     Події надсилаються в ту саму Google Таблицю, що й заявки. Без cookies і сторонніх сервісів. */
+  var AB = (function () {
+    var v = 'a', r = '';
+    try {
+      var q = new URLSearchParams(location.search);
+      var qv = q.get('v');
+      if (qv === 'a' || qv === 'b') { v = qv; localStorage.setItem('rs-v', v); }
+      else if (localStorage.getItem('rs-v') === 'b') v = 'b';
+      var qr = (q.get('r') || '').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 20);
+      if (qr) { r = qr; localStorage.setItem('rs-r', r); }
+      else r = localStorage.getItem('rs-r') || '';
+    } catch (e) { /* приватний режим — працюємо з тим, що є в посиланні */ }
+    return { v: v, r: r };
+  })();
+
+  var ENDPOINT = (window.RESTONE_CONFIG && window.RESTONE_CONFIG.FORM_ENDPOINT) || '';
+  var PAGE = /form\.html/.test(location.pathname) ? 'form' : 'home';
+  var startedAt = Date.now();
+
+  function track(event, extra) {
+    if (!ENDPOINT) return;
+    var data = new URLSearchParams({ type: 'event', event: event, v: AB.v, r: AB.r, page: PAGE });
+    if (extra) Object.keys(extra).forEach(function (k) { data.set(k, extra[k]); });
+    try {
+      if (navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, data)) return;
+    } catch (e) { /* далі — запасний варіант */ }
+    try { fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', keepalive: true, body: data }); } catch (e) { }
+  }
+
+  track('page_view');
+
+  // Натискання будь-якої кнопки чи посилання, що веде на форму запиту
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (a && /form\.html/.test(a.getAttribute('href'))) {
+      track('click_request', { label: a.textContent.replace(/\s+/g, ' ').trim().slice(0, 40) });
+    }
+  });
+
+  // Час на сторінці: надсилаємо, коли людина йде зі сторінки або перемикає вкладку
+  function sendTime() {
+    track('time', { sec: String(Math.round((Date.now() - startedAt) / 1000)) });
+  }
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') sendTime();
+  });
+
   /* ---------- Форма ---------- */
   var form = document.getElementById('request-form');
   if (!form) return;
@@ -153,6 +203,8 @@
       contact: (fd.get('contact') || '').trim(),
       consent: fd.get('consent') ? 'так' : 'ні',
       website: fd.get('website') || '',
+      variant: AB.v,
+      code: AB.r,
       page: location.href
     };
   }
@@ -191,6 +243,7 @@
       mode: 'no-cors',
       body: new URLSearchParams(data)
     }).then(function () {
+      track('form_submit');
       showThanks();
     }).catch(function () {
       submitBtn.disabled = false;

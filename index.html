@@ -23,7 +23,23 @@
         if (localStorage.getItem('rs-contrast') === 'high') document.documentElement.setAttribute('data-contrast', 'high');
       } catch (e) { }
     })();
+    // A/B-тест першого екрана: варіант береться з посилання (?v=a або ?v=b) і запам'ятовується
+    (function () {
+      var v = 'a';
+      try {
+        var q = new URLSearchParams(location.search).get('v');
+        if (q === 'a' || q === 'b') { v = q; localStorage.setItem('rs-v', v); }
+        else if (localStorage.getItem('rs-v') === 'b') v = 'b';
+      } catch (e) { }
+      document.documentElement.setAttribute('data-variant', v);
+    })();
   </script>
+  <style>
+    html:not([data-variant="b"]) .v-b,
+    html[data-variant="b"] .v-a {
+      display: none;
+    }
+  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -86,8 +102,13 @@
         <div class="hero-text">
           <span class="pill">Студентський проєкт · Youthquake 2026</span>
           <h1 id="hero-title">Тактильна плитка для безбар'єрних міст</h1>
-          <p class="hero-sub">Бетонні плитки «поле уваги» та «напрямні смуги» 300×300×60 мм. Готуємо перші зразки до
-            лабораторних випробувань.</p>
+          <!-- Варіант A: підготовка до закупівлі -->
+          <p class="hero-sub v-a">Бетонні плитки «поле уваги» та «напрямні смуги» 300×300×60 мм для облаштування
+            доступного простору. Після лабораторних випробувань надамо зразок, паспорт якості й протокол.</p>
+          <!-- Варіант B: + екологічний аргумент -->
+          <p class="hero-sub v-b">Бетонні плитки «поле уваги» та «напрямні смуги» 300×300×60 мм для облаштування
+            доступного простору — з частковим використанням залишків каменеобробки. Після лабораторних випробувань
+            надамо зразок, паспорт якості й протокол.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="form.html">Запросити зразок <span aria-hidden="true">→</span></a>
             <a class="btn btn-outline" href="#specs">Характеристики</a>
@@ -261,11 +282,13 @@
     <div class="wrap footer-row">
       <span class="footer-brand">ReStone Tactile</span>
       <p>Студентський проєкт команди Sludge2Product · Youthquake 2026</p>
-      <p>Легкий сайт: менше даних — менше енергії. Без трекерів.</p>
+      <p>Легкий сайт: менше даних — менше енергії. Без сторонніх трекерів і cookies: для тесту рахуємо лише
+        перегляди й натискання у власній таблиці.</p>
       <a href="form.html">Запит на зразок</a>
     </div>
   </footer>
 
+  <script src="config.js"></script>
   <script src="app.js" defer></script>
 </body>
 
